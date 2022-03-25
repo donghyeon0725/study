@@ -1,6 +1,5 @@
 [출처](https://chanhuiseok.github.io/posts/cs-2/)
 
-
 ## 📌 데드락이란?
 
 ---
