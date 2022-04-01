@@ -5,7 +5,21 @@ public class ThreadTest {
 //        daemonSample();
 //        thisSyncLockTest();
 //        resourceInstanceSyncLockTest();
-        syncTest();
+//        syncTest();
+        stateTest();
+    }
+
+    public static void stateTest() {
+        SleepThread thread = new SleepThread("thread", 2000);
+
+        try {
+            thread.start();
+            thread.join(500);
+            thread.interrupt();
+            System.out.println(thread.getState());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void syncTest() {
