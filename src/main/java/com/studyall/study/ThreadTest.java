@@ -6,7 +6,26 @@ public class ThreadTest {
 //        thisSyncLockTest();
 //        resourceInstanceSyncLockTest();
 //        syncTest();
-        stateTest();
+//        stateTest();
+        interruptTest();
+    }
+
+    public static void interruptTest() {
+        Thread thread = new Thread(() -> {
+            long result = 0;
+            while (true) {
+                result++;
+
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+        thread.interrupt();
     }
 
     public static void stateTest() {
