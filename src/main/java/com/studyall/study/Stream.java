@@ -1,6 +1,7 @@
 package com.studyall.study;
 
 import java.util.*;
+import java.util.ArrayList;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
@@ -47,5 +48,17 @@ public class Stream {
                 .collect(HashSet::new, Set::addAll, Set::addAll);
 
 
+        Stack<Integer> stack = new Stack(){{
+            push(1);
+            push(2);
+        }};
+
+        List<Integer> integers1 = stack.stream().collect(Collectors.toList());
+        ArrayList<Integer> integers2 = new ArrayList<>(stack);
+
+
+        integers1.stream().skip(0);
+
+        System.out.println(integers1);
     }
 }
