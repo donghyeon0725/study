@@ -5,11 +5,16 @@ import org.springframework.cglib.core.Local;
 import java.time.DayOfWeek;
 import java.time.format.TextStyle;
 import java.util.Locale;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class WeekTest {
     public static void main(String[] args) {
 //        printDayOfWeek();
         printMondayOfOtherLocale();
+        Semaphore semaphore = new Semaphore(1, false);
+        ConcurrentHashMap map = new ConcurrentHashMap();
     }
 
     public static void printDayOfWeek() {
