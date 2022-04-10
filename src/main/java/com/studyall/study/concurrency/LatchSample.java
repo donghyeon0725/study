@@ -17,7 +17,7 @@ public class LatchSample {
 
                 try {
                     latch.countDown();
-                    latch.await();
+                    latch.await(); // latch count 가 0 이 될 때 까지 대기
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
