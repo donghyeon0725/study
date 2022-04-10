@@ -1,5 +1,7 @@
 package com.studyall.study.concurrency;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,16 +11,17 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public class ConcurrentCollectionTest {
     public static void main(String[] args) throws InterruptedException {
         ConcurrentHashMap<String, String> map = new ConcurrentHashMap(200000);
-        CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList();
-        CopyOnWriteArraySet<Integer> set = new CopyOnWriteArraySet();
 
+        List<Integer> arrayList = new ArrayList<>(200000);
 
         // map, list, set 에 값 세팅
         for (int i=0; i<100000; i++) {
             map.put("key" + i, String.valueOf(i));
-            list.add(i);
-            set.add(i);
+            arrayList.add(i);
         }
+
+        CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList(arrayList);
+        CopyOnWriteArraySet<Integer> set = new CopyOnWriteArraySet(arrayList);
 
         // 맵에 대한 ConcurrentModificationException 확인
         Thread mapWriteThread = new Thread(() -> {
