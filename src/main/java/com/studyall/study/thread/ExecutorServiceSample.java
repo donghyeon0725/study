@@ -8,6 +8,7 @@ public class ExecutorServiceSample {
         ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();
         ExecutorService newSingleThreadExecutor = Executors.newSingleThreadExecutor();
 
+
         ExecutorService newScheduledThreadPool = Executors.newScheduledThreadPool(5);
 
         Future<String> submit1 = newScheduledThreadPool.submit(() -> {
