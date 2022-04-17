@@ -13,8 +13,8 @@ public class ReferenceClassTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        weakReferenceTest();
-//        softReferenceTest();
+//        weakReferenceTest();
+        softReferenceTest();
 //        strongReferenceTest();
     }
 
@@ -38,7 +38,6 @@ public class ReferenceClassTest {
     }
 
     public static void weakReferenceTest() {
-        // visualGC 를 켜기 전에 while 연산으로 들어가면 중간에 jvm info 를 interrupt 를 할 수 없어서인지 열리지 않으므로
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -46,9 +45,8 @@ public class ReferenceClassTest {
         }
 
         try {
-            long i = 0;
             while (true) {
-                weakReferences.add(new WeakReference<BigData>(new BigData()));
+                weakReferences.add(new WeakReference<>(new BigData()));
             }
         } catch (OutOfMemoryError e) {
             System.out.println("out of memory");
@@ -57,7 +55,6 @@ public class ReferenceClassTest {
 
     public static void softReferenceTest() {
 
-        // visualGC 를 켜기 전에 while 연산으로 들어가면 중간에 jvm info 를 interrupt 를 할 수 없어서인지 열리지 않으므로
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
