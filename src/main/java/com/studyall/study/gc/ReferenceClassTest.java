@@ -1,5 +1,7 @@
 package com.studyall.study.gc;
 
+import java.lang.ref.Reference;
+import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.*;
@@ -9,12 +11,14 @@ public class ReferenceClassTest {
     private static List<WeakReference<BigData>> weakReferences = new LinkedList<>();
     private static List<SoftReference<BigData>> softReferences = new LinkedList<>();
     private static List<BigData> strongReferences = new LinkedList<>();
+    private static ReferenceQueue referenceQueue = new ReferenceQueue();
 
 
 
     public static void main(String[] args) throws InterruptedException {
+        weakReferenceTestWithReferenceQueue();
 //        weakReferenceTest();
-        softReferenceTest();
+//        softReferenceTest();
 //        strongReferenceTest();
     }
 
@@ -47,6 +51,33 @@ public class ReferenceClassTest {
         try {
             while (true) {
                 weakReferences.add(new WeakReference<>(new BigData()));
+            }
+        } catch (OutOfMemoryError e) {
+            System.out.println("out of memory");
+        }
+    }
+
+    // ReferenceQueue 에 값이 잘 수거되고 있지 않기 때문에 Old Gen 메모리 상에 무엇인가 남는 것인지 확인해봤는데, 아님. 큐에 데이터 잘 쌓이고 있음
+    public static void weakReferenceTestWithReferenceQueue() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Reference reference = null;
+
+        try {
+            while (true) {
+                weakReferences.add(new WeakReference<>(new BigData(), referenceQueue));
+
+
+                while ((reference = referenceQueue.poll()) != null) {
+
+                    System.out.println("데이터 있음");
+
+                    reference = null;
+                }
             }
         } catch (OutOfMemoryError e) {
             System.out.println("out of memory");
