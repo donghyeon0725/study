@@ -16,8 +16,8 @@ public class ReferenceClassTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-        weakReferenceTestWithReferenceQueue();
-//        weakReferenceTest();
+//        weakReferenceTestWithReferenceQueue();
+        weakReferenceTest();
 //        softReferenceTest();
 //        strongReferenceTest();
     }
