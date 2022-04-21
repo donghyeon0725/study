@@ -13,8 +13,6 @@ public class ReferenceClassTest {
     private static List<BigData> strongReferences = new LinkedList<>();
     private static ReferenceQueue referenceQueue = new ReferenceQueue();
 
-
-
     public static void main(String[] args) throws InterruptedException {
 //        weakReferenceTestWithReferenceQueue();
         weakReferenceTest();
