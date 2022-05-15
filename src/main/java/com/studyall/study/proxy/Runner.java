@@ -18,5 +18,12 @@ public class Runner {
         goods.setGoodsId(1);
 
         proxy.orderGoods(buyer, Arrays.asList(goods));
+
+
+        OrderService orderServiceProxy = JDKRuntimeProxy.getOrderServiceProxy(new OrderServiceImpl());
+        orderServiceProxy.orderGoods(buyer, Arrays.asList(goods));
+
+        OrderService cglibOrderServiceProxy = CGLib.getOrderServiceProxy(new OrderServiceImpl());
+        cglibOrderServiceProxy.orderGoods(buyer, Arrays.asList(goods));
     }
 }

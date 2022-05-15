@@ -3,7 +3,7 @@ package com.studyall.study.proxy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderServiceImpl implements OrderService {
+public final class OrderServiceImpl implements OrderService {
 
     private List<Order> orderRepository = new ArrayList<>();
 
